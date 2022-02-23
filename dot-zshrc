@@ -128,6 +128,8 @@ source $ZSH/oh-my-zsh.sh
 
 alias ld="colorls --sd -A"
 alias tree="colorls --tree"
+alias crkbd_keymap="cd ~/qmk_firmware/keyboards/crkbd/keymaps/crkbd-layout"
+alias crkbd_flash="qmk flash -kb crkbd/rev1 -km"
 
 
 [ -f ~/.fzf.zsh ] && source ~/.fzf.zsh

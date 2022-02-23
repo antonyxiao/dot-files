@@ -31,14 +31,15 @@ set signcolumn=no
 " clipboard
 set clipboard+=unnamedplus
 
-
 " nvim color scheme
 highlight FgCocErrorFloatBgCocFloating ctermbg=DarkBlue
+highlight FgCocWarningFloatBgCocFloating ctermfg=White
 highlight CocFloating ctermbg=DarkBlue
 highlight Pmenu ctermbg=DarkGray ctermfg=white
 highlight PmenuSel ctermbg=LightGray ctermfg=black
-highlight Error ctermbg=Black ctermfg=Black cterm=underline guisp=red
+highlight Error ctermbg=Black ctermfg=red cterm=underline guisp=red
 highlight LineNr ctermfg=DarkGray
+
 
 "==============================================================================
 " closepairs.vim - Auto closes pairs of characters
@@ -51,59 +52,59 @@ highlight LineNr ctermfg=DarkGray
 "==============================================================================
 
 
-inoremap ( ()<left>
-inoremap { {}<left>
-inoremap [ []<left>
+" inoremap ( ()<left>
+" inoremap { {}<left>
+" inoremap [ []<left>
 
-vnoremap <leader>" "zdi"<c-r>z"
-vnoremap <leader>' "zdi'<c-r>z'
-vnoremap <leader>( "zdi(<c-r>z)
-vnoremap <leader>[ "zdi[<c-r>z]
-vnoremap <leader>{ "zdi{<c-r>z}
+" vnoremap <leader>" "zdi"<c-r>z"
+" vnoremap <leader>' "zdi'<c-r>z'
+" vnoremap <leader>( "zdi(<c-r>z)
+" vnoremap <leader>[ "zdi[<c-r>z]
+" vnoremap <leader>{ "zdi{<c-r>z}
 
-inoremap <expr> <bs> <SID>delpair()
+" inoremap <expr> <bs> <SID>delpair()
 
-inoremap <expr> ) <SID>escapepair(')')
-inoremap <expr> } <SID>escapepair('}')
-inoremap <expr> ] <SID>escapepair(']')
+" inoremap <expr> ) <SID>escapepair(')')
+" inoremap <expr> } <SID>escapepair('}')
+" inoremap <expr> ] <SID>escapepair(']')
 
-inoremap <expr> " <SID>pairquotes('"')
-inoremap <expr> ' <SID>pairquotes("'")
+" inoremap <expr> " <SID>pairquotes('"')
+" inoremap <expr> ' <SID>pairquotes("'")
 
 
-function! s:delpair()
-	let l:lst = ['""',"''",'{}','[]','()']
-	let l:col = col('.')
-	let l:line = getline('.')
-	let l:chr = l:line[l:col-2 : l:col-1]
-	if index(l:lst, l:chr) > -1
-		return "\<bs>\<del>"
-	else
-		let l:chr = l:line[l:col-3:l:col-2]
-		if (index(l:lst, l:chr)) > - 1
-			return "\<bs>\<bs>"
-		endif
-		return "\<bs>"
-endf
+" function! s:delpair()
+" 	let l:lst = ['""',"''",'{}','[]','()']
+" 	let l:col = col('.')
+" 	let l:line = getline('.')
+" 	let l:chr = l:line[l:col-2 : l:col-1]
+" 	if index(l:lst, l:chr) > -1
+" 		return "\<bs>\<del>"
+" 	else
+" 		let l:chr = l:line[l:col-3:l:col-2]
+" 		if (index(l:lst, l:chr)) > - 1
+" 			return "\<bs>\<bs>"
+" 		endif
+" 		return "\<bs>"
+" endf
 
-function! s:escapepair(right)
-	let l:col = col('.')
-	let l:chr = getline('.')[l:col-1]
-	if a:right == l:chr 
-		return "\<right>"
-	else
-		return a:right
+" function! s:escapepair(right)
+" 	let l:col = col('.')
+" 	let l:chr = getline('.')[l:col-1]
+" 	if a:right == l:chr 
+" 		return "\<right>"
+" 	else
+" 		return a:right
 
-endf
+" endf
 
-function! s:pairquotes(pair)
-	let l:col = col('.')
-	let l:line = getline('.')
-	let l:chr = l:line[l:col-1]
-	if a:pair == l:chr 
-		return "\<right>"
-	else
-		return a:pair.a:pair."\<left>"
+" function! s:pairquotes(pair)
+" 	let l:col = col('.')
+" 	let l:line = getline('.')
+" 	let l:chr = l:line[l:col-1]
+" 	if a:pair == l:chr 
+" 		return "\<right>"
+" 	else
+" 		return a:pair.a:pair."\<left>"
 
-endf
+" endf
 
